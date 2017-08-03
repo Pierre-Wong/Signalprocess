@@ -3,7 +3,7 @@
 #include<vector>
 #include <math.h>
 #include <algorithm>
-#include"mycomplex.h"
+#include"../complex/mycomplex.h"
 #include<Windows.h>
 
 

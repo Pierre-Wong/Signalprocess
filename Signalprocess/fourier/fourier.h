@@ -1,7 +1,7 @@
 #pragma once
-#include"mycomplex.h"
-#include"Definitions.h"
-#include"draw.h"
+#include "../complex/mycomplex.h"
+#include "../Def/Definitions.h"
+#include "../draw/draw.h"
 
 
 complex fser(double(*ptr)(double), double t, double Tstart, double Tend);

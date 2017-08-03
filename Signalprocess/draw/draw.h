@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef CImg.h
-#include "CImg.h" 
+#include "../CImg/CImg.h"
 #endif // !CImg.h
 
 

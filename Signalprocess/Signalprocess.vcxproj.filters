@@ -18,45 +18,45 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mycomplex.cpp">
+    <ClCompile Include="basicfunction\basicfunction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="part2.cpp">
+    <ClCompile Include="complex\mycomplex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Definitions.cpp">
+    <ClCompile Include="Def\Definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw.cpp">
+    <ClCompile Include="draw\draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="basicfunction.cpp">
+    <ClCompile Include="fourier\fourier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fourier.cpp">
+    <ClCompile Include="mainpart\part2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CImg.h">
+    <ClInclude Include="mainpart\part2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Definitions.h">
+    <ClInclude Include="fourier\fourier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mycomplex.h">
+    <ClInclude Include="draw\draw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="part2.h">
+    <ClInclude Include="Def\Definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw.h">
+    <ClInclude Include="complex\mycomplex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="basicfunction.h">
+    <ClInclude Include="CImg\CImg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fourier.h">
+    <ClInclude Include="basicfunction\basicfunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

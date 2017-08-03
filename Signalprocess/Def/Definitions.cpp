@@ -1,9 +1,9 @@
 #include<vector>
 #include <math.h>
 #include <algorithm>
-#include"mycomplex.h"
+#include"../complex/mycomplex.h"
 #include<Windows.h>
-#include"Definitions.h"
+#include "Definitions.h"
 
 double epison=0.00001;
 using namespace std;

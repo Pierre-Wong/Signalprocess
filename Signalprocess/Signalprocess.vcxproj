@@ -19,22 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="basicfunction.cpp" />
-    <ClCompile Include="Definitions.cpp" />
-    <ClCompile Include="draw.cpp" />
-    <ClCompile Include="fourier.cpp" />
+    <ClCompile Include="basicfunction\basicfunction.cpp" />
+    <ClCompile Include="complex\mycomplex.cpp" />
+    <ClCompile Include="Def\Definitions.cpp" />
+    <ClCompile Include="draw\draw.cpp" />
+    <ClCompile Include="fourier\fourier.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mycomplex.cpp" />
-    <ClCompile Include="part2.cpp" />
+    <ClCompile Include="mainpart\part2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="basicfunction.h" />
-    <ClInclude Include="CImg.h" />
-    <ClInclude Include="Definitions.h" />
-    <ClInclude Include="draw.h" />
-    <ClInclude Include="fourier.h" />
-    <ClInclude Include="mycomplex.h" />
-    <ClInclude Include="part2.h" />
+    <ClInclude Include="basicfunction\basicfunction.h" />
+    <ClInclude Include="CImg\CImg.h" />
+    <ClInclude Include="complex\mycomplex.h" />
+    <ClInclude Include="Def\Definitions.h" />
+    <ClInclude Include="draw\draw.h" />
+    <ClInclude Include="fourier\fourier.h" />
+    <ClInclude Include="mainpart\part2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E1C0F37C-60C8-483C-98D4-7AEDBBDFCE19}</ProjectGuid>

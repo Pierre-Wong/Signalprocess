@@ -9,11 +9,11 @@
 #include <algorithm>
 
 #include<numeric>
-#include"part2.h"
-#include"draw.h"
+#include"./mainpart/part2.h"
+#include"./draw/draw.h"
 
-#include"basicfunction.h"
-#include"fourier.h"
+#include"./basicfunction/basicfunction.h"
+#include"./fourier/fourier.h"
 //#include "msp.h"
 using namespace std;
 
