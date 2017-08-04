@@ -35,4 +35,4 @@ bool operator == (complex  a, complex b);
 
 complex exp(complex x);
 
-complex power(complex x, unsigned int i);
+complex power(complex x,  int i);

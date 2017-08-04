@@ -316,7 +316,7 @@ complex detm(cmatrix a1)
 }
 
 
-//保证多项式p的最高此项非0
+//保证多项式p的最高次项系数非0
 void preparepoly(poly &p)
 {
 
@@ -685,10 +685,12 @@ unsigned comb(int m, int n)
 }
 
 /*零输入响应的求解*/
-vevecom zeroinput(poly linearsystem, lfvector initial)
+vecfunc zeroinput(poly linearsystem, lfvector initial)
 {
 	if (linearsystem.size() - 1 != initial.size())
-		return vevecom();          //初始状态和系统阶数要匹配
+		return vecfunc();          //初始状态和系统阶数要匹配
+		
+	
 								   //cmatrix ma = cmatrix(initial.size(), vector<complex>(initial.size(), complex(0)));
 	cmatrix coef;                  //转换成线性方程组后的系数存储在coef矩阵里
 	vevecom s = solve(linearsystem);    //通过solve函数求解特征值，solve函数利用劈因子法求解特征值并且能够求出每个特征值的阶数。
@@ -743,16 +745,29 @@ vevecom zeroinput(poly linearsystem, lfvector initial)
 			count1++;
 		}
 	}
-
-	return zeros;
+	
+	
+	vecfunc zerrepo;
+	for (int i = 0; i < zeros.size(); i++)
+	{
+		func f;
+		f.ex = zeros[i][0];
+		for (int j = 1; j < zeros[i].size(); j++)
+		{
+			f.fra.numer.push_back(zeros[i][j]);
+		}
+		zerrepo.push_back(f);
+	}
+	
+	return zerrepo;
 
 }
 /*冲击响应求解*/
-vevecom impulse(poly y, poly x)
+vecfunc impulse(poly y, poly x)
 {
 	int n = y.size() - 1, m = x.size() - 1;
 	if (y.size() <= x.size())
-		return vevecom();
+		return vecfunc();
 	lfvector E = x;
 	E.resize(n);
 	//	lfvector initial=lfvector(y.size()-1);
@@ -776,7 +791,7 @@ vevecom impulse(poly y, poly x)
 	}
 	lfvector initial = cramer(coef, E);
 	reverse(initial.begin(), initial.end());
-	vevecom result = zeroinput(y, initial);
+	vecfunc result = zeroinput(y, initial);
 	return result;
 }
 
@@ -892,6 +907,22 @@ ve3com reduce(fracfunction f)
 
 
 
+vecfunc vevec2vecf(vevecom zeros)
+{
+	vecfunc zerrepo;
+	for (int i = 0; i < zeros.size(); i++)
+	{
+		func f;
+		f.ex = zeros[i][0];
+		for (int j = 1; j < zeros[i].size(); j++)
+		{
+			f.fra.numer.push_back(zeros[i][j]);
+		}
+		zerrepo.push_back(f);
+	}
+
+	return zerrepo;
+}
 
 
 
@@ -962,11 +993,17 @@ vevecom decomp(fracfunction f)
 	}
 	return laplace;
 
+
+	//vecfunc lapfunc = vevec2vecf(laplace);
+	//return lapfunc;
+
+
 }
 
 
 
 /*正规化 Butterworth多项式*/
+/*
 cpoly Butterworth(int n)
 {
 	cpoly mul(1, complex(1));
@@ -990,6 +1027,26 @@ cpoly Butterworth(int n)
 		return one*Butterworth(n - 1);
 	}
 }
+*/
+cpoly Butterworth(int n)
+{
+	cpoly mul;
+	mul.push_back(complex(1));
+	for (int k = 0; k < n; k++)
+	{
+		cpoly p; //一次多项式
+		p.push_back(complex(0));
+		p.push_back(complex(1));
+		double z = 0.5 + (2 * k + 1)*1.0 / (2 * n);
+		p[0] = -1*exp(complex(0, pie)*z) ;
+		mul = mul*p;
+	}
+	return mul;
+}
+
+
+
+
 
 /* sinh 双曲正弦函数*/
 double sinh(double x)
@@ -1042,4 +1099,72 @@ complex Chebyshev(unsigned int n, double fre)
 		return cos(n*acos(fre));
 	else
 		return cosh(n*arcosh(fre));
+}
+
+//离散时间线性系统零输入响应
+vevecom dzeroinput(poly linearsystem, lfvector initial)
+{
+	if (linearsystem.size() - 1 != initial.size())
+		return vevecom();          //初始状态和系统阶数要匹配
+
+
+								   //cmatrix ma = cmatrix(initial.size(), vector<complex>(initial.size(), complex(0)));
+	cmatrix coef;                  //转换成线性方程组后的系数存储在coef矩阵里
+	vevecom s = solve(linearsystem);    //通过solve函数求解特征值，solve函数利用劈因子法求解特征值并且能够求出每个特征值的阶数。
+	int count = 0;
+	for (int i = 1; i < s.size(); i++)       //i循环代表遍历所有阶数的重根，i重根存储在s[i]中
+	{
+		for (int j = 0; j < s[i].size(); j++)  //遍历每个根
+		{
+			for (int m = 0; m <= i - 1; m++)
+			{
+				vector<complex> temp;
+				for (int k = 0; k < initial.size(); k++)
+				{
+					dfunc f;
+					f.ex = powfunction(s[i][j]);
+					f.fra = fracfunction();
+					f.fra.deno = cpoly(1, complex(1));
+					f.fra.numer = cpoly(m + 1, complex(0));
+					f.fra.numer[m] = complex(1);                               //f=exp(lambda*t)*t^m 
+					temp.push_back(f.val(-k-1));      //对f求k次导数再求值得到系数
+																			  //temp.push_back(comb(k, m) *postivepower(s[i][j], k - m));
+				}
+				coef.push_back(temp);   //根据根的重数带入系数
+			}
+
+
+		}
+	}
+
+
+
+	//带入初始状态，用克拉默法则求解
+	vector<complex> cinitial;
+	for (int i = 0; i < initial.size(); i++)
+		cinitial.push_back(complex(initial[i]));  //初始状态向量
+	vector<complex> solv = cramer(coef, cinitial);   //cramer函数，给定矩阵求解未知数
+	vevecom zeros;
+	unsigned int count1 = 0;
+	unsigned int count2 = 0;
+	for (int i = 1; i < s.size(); i++)
+	{
+		for (int j = 0; j < s[i].size(); j++)
+		{
+			zeros.push_back(vector<complex>());
+			zeros[count1].push_back(s[i][j]);      //首先把特征值放在最前面
+			for (int k = 0; k < i; k++)
+			{
+
+				zeros[count1].push_back(solv[count2]); //然后放入解的系数
+				count2++;
+			}
+			count1++;
+		}
+	}
+
+
+	
+	return zeros;
+
 }

@@ -20,9 +20,6 @@ using namespace std;
 //#define pi 3.14159265358979323846
 
 
-
-
-
 double fre(int x)
 {
 	return fouierser(juxing, x, -2, 2).real;

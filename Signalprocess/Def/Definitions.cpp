@@ -9,6 +9,9 @@ double epison=0.00001;
 using namespace std;
 
 
+
+
+
 complex value(cpoly f, complex x)
 {
 	if (f.empty())
@@ -31,28 +34,7 @@ cpoly operator +(cpoly a, cpoly b)             //多项式的运算符重载
 	}
 	return sum;
 }
-template <class T>cpoly operator *(T a, cpoly b)
-{
-	if (b.empty())
-		return b;
-	cpoly product;
-	for (int i = 0; i < b.size(); i++)
-	{
-		product.push_back(a*b[i]);
-	}
-	return product;
-}
-template <class T> cpoly operator *(cpoly b, T a)
-{
-	if (b.empty())
-		return b;
-	cpoly product;
-	for (int i = 0; i < b.size(); i++)
-	{
-		product.push_back(a*b[i]);
-	}
-	return product;
-}
+
 
 cpoly operator -(cpoly a, cpoly b)
 {
@@ -200,24 +182,7 @@ poly operator -(poly a, poly b)
 	}
 	return diff;
 }
-template <class T> poly operator *(T a, poly b)
-{
-	poly product;
-	for (int i = 0; i < b.size(); i++)
-	{
-		product.push_back(a*b[i]);
-	}
-	return product;
-}
-template <class T> poly operator *(poly b, T a)
-{
-	poly product;
-	for (int i = 0; i < b.size(); i++)
-	{
-		product.push_back(a*b[i]);
-	}
-	return product;
-}
+
 
 
 
@@ -236,3 +201,76 @@ poly operator *(poly a, poly b)
 }
 
 
+powfunction operator * (powfunction x, powfunction y)
+{
+	return(powfunction(x.r*y.r));
+}
+
+dfunc operator *(powfunction x, fracfunction y)
+{
+	return(dfunc(x, y));
+}
+dfunc operator *(dfunc x, powfunction y)
+{
+	return(dfunc(x.ex*y, x.fra));
+}
+
+powfunction operator / (powfunction x, powfunction y)
+{
+	return(powfunction(x.r /y.r));
+}
+
+
+dfunc operator *(dfunc x, dfunc y)
+{
+	return(dfunc(x.ex*y.ex, x.fra*y.fra));
+}
+/*
+dfunc operator *(powfunction x, fracfunction y)
+{
+	return(dfunc(x, y));
+}
+*/
+dfunc operator *(dfunc x, fracfunction y)
+{
+	return(dfunc(x.ex, y*x.fra));
+}
+/*
+dfunc operator *(dfunc x, powfunction y)
+{
+	return(dfunc(x.ex*y, x.fra));
+}
+*/
+
+dfunc operator /(dfunc x, dfunc y)
+{
+	return(dfunc(x.ex / y.ex, x.fra / y.fra));
+}
+
+
+dvecfunc operator +(dvecfunc x, dvecfunc y)
+{
+	dvecfunc z = x;
+	for (int j = 0; j < y.size(); j++)
+	{
+		bool find = 0;
+		for (int i = 0; i < x.size(); i++)
+		{
+			if (x[i].ex.r == y[j].ex.r)
+				z[i].fra = z[i].fra + y[j].fra;
+			find = 1;
+			break;
+		}
+		if (!find)
+			z.push_back(y[j]);
+	}
+	return z;
+}
+dvecfunc operator +(dfunc x, dfunc y)
+{
+	if (!x.fra.numer.empty() && !y.fra.numer.empty())
+		return (dvecfunc(1, x) + dvecfunc(1, y));
+	else if (x.fra.numer.empty())
+		return dvecfunc(1, y);
+	else return dvecfunc(1, x);
+}

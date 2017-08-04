@@ -24,7 +24,6 @@
     <ClCompile Include="Def\Definitions.cpp" />
     <ClCompile Include="draw\draw.cpp" />
     <ClCompile Include="fourier\fourier.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="mainpart\part2.cpp" />
   </ItemGroup>
   <ItemGroup>

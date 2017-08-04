@@ -158,15 +158,18 @@ unsigned gamma(int i);
 unsigned comb(int m, int n);
 
 /*零输入响应的求解*/
-vevecom zeroinput(poly linearsystem, lfvector initial);
+vecfunc zeroinput(poly linearsystem, lfvector initial);
 
 
 /*冲击响应求解*/
-vevecom impulse(poly y, poly x);
+vecfunc impulse(poly y, poly x);
 
 
 cpoly ve2cpoly(vevecom sing);
 
+
+
+vevecom dzeroinput(poly linearsystem, lfvector initial);
 
 
 
@@ -176,7 +179,7 @@ ve3com reduce(fracfunction f);
 
 
 
-
+vecfunc vevec2vecf(vevecom zeros);
 
 /*实多项式的部分因子分解*/
 vevecom decomp(fracfunction f);
@@ -204,6 +207,7 @@ cpoly Chebyshev(unsigned int n);
 
 /*求值用函数*/
 complex Chebyshev(unsigned int n, double fre);
+
 
 
 

@@ -63,10 +63,20 @@ complex exp(complex x)
 	euler.image = exp(x.real)*sin(x.image);
 	return euler;
 }
-complex power(complex x, unsigned int i)
+
+complex pluspower(complex x, unsigned int i)
 {
 	if (i == 0)
 		return 1;
 	else
-		return x*power(x, i - 1);
+		return x*pluspower(x, i - 1);
 }
+
+complex power(complex x, int i)
+{
+	if (i >= 0)
+		return pluspower(x, i);
+	else
+		return 1 / pluspower(x, -i);
+}
+
