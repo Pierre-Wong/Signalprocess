@@ -274,3 +274,88 @@ dvecfunc operator +(dfunc x, dfunc y)
 		return dvecfunc(1, y);
 	else return dvecfunc(1, x);
 }
+
+std::ostream & operator<<(std::ostream &out, poly &obj)
+{
+	bool zero = true;
+	for (int i = 0; i < obj.size(); i++)
+	{
+		if (obj[i] != 0)
+		{
+			if (!zero)
+				out << "+";
+			out << "(" << obj[i] << ")";
+			if (i)
+			{
+				out << "x^" << i;
+			}
+			zero = false;
+		}
+	}
+	return out;
+}
+
+std::ostream & operator<<(std::ostream &out, cpoly &obj)
+{
+	bool zero = true;
+	for (int i = 0; i < obj.size(); i++)
+	{
+		if (!(obj[i] ==complex(0)))
+		{
+			if (!zero)
+				out << "+";
+			out << "("<<obj[i]<<")";
+			if (i)
+			{
+				out << "x^" << i;
+			}
+			zero = false;
+		}
+	}
+	return out;
+}
+
+std::ostream & operator<<(std::ostream &out, expfunction &obj)
+{
+	if (!(obj.expo == complex(0)))
+	{
+		out << "e^" << obj.expo<<"x";
+	}
+	else
+		out << 1;
+	return out;
+}
+
+std::ostream & operator<<(std::ostream &out, fracfunction &obj)
+{
+	if ((obj.deno.size() == 1)&&(obj.deno[0] == complex(1)))
+	{
+		
+		out << obj.numer;
+	}
+	else
+	{
+		out << "(" << obj.numer << ")/(" << obj.deno << ")";
+	}
+	return out;
+}
+
+std::ostream & operator<<(std::ostream &out, func &obj)
+{
+	out << obj.fra << " * " << obj.ex;
+	return out;
+}
+std::ostream & operator<<(std::ostream &out, vecfunc &obj)
+{
+	bool zero = true;
+	for (int i = 0; i < obj.size(); i++)
+	{
+		if (!zero)
+		{
+			out << " + ";
+		}
+		out << obj[i];
+		zero = false;
+	}
+	return out;
+}

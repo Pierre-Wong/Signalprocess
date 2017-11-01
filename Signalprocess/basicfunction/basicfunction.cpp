@@ -182,10 +182,10 @@ double lsh(double x)
 
 
 
-#define min(a,b) (((a)<(b))?(a):(b))
+#define min_in(a,b) (((a)<(b))?(a):(b))
 
 
-#define max(a,b) (((a)>(b))?(a):(b))
+#define max_in(a,b) (((a)>(b))?(a):(b))
 
 
 void conv(double u[], double v[], double w[], int m, int n)
@@ -198,7 +198,7 @@ void conv(double u[], double v[], double w[], int m, int n)
 		w[l] = 0;
 	for (i = 0; i < k; i++)
 	{
-		for (j = max(0, i + 1 - n); j <= min(i, m - 1); j++)
+		for (j = max_in(0, i + 1 - n); j <= min_in(i, m - 1); j++)
 		{
 			w[i] += u[j] * v[i - j];
 		}

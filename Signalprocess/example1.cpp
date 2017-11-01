@@ -1,14 +1,6 @@
+
 #include <stdio.h>  
 #include <stdlib.h>  
-
-#include <windows.h>   
-#include <stdio.h>   
-#include <mmsystem.h>   
-#include <omp.h>
-#include <vector>
-#include <algorithm>
-
-#include<numeric>
 #include"./mainpart/part2.h"
 #include"./draw/draw.h"
 
@@ -39,7 +31,7 @@ double expseq(int x)
 int main()
 {
 	
-	showc(expfun, -10, 10, 0, 100);
-	//showd(expseq, -10, 10, 0, 1000);
+	//showc(expfun, -10, 10, 0, 100);
+	showd(expseq, -10, 10, 0, 1000);
 	getchar();
 }

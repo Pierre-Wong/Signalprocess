@@ -80,3 +80,24 @@ complex power(complex x, int i)
 		return 1 / pluspower(x, -i);
 }
 
+std::ostream & operator<<(std::ostream &out, complex &obj)
+{
+	bool re = obj.real != 0;
+	bool im = obj.image != 0;
+	if (re)
+	{
+		out << obj.real;
+		if (im)
+			out << " + "<<obj.image << "i ";
+	}
+	else
+	{
+		if (im)
+			out << obj.image << "i ";
+		else
+			out << 0;
+	}
+	
+	
+	return out;
+}

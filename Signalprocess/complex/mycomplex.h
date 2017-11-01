@@ -1,5 +1,6 @@
 #pragma once
 #include<math.h>
+#include<iostream>
 class complex{
 public:
 	double real;
@@ -32,6 +33,7 @@ complex operator/(complex  a, complex b);
 
 bool operator == (complex  a, complex b);
 
+std::ostream & operator<<(std::ostream &out, complex &obj);
 
 complex exp(complex x);
 

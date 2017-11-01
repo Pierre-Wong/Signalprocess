@@ -32,6 +32,10 @@ public:
 typedef vector<double>  poly;   //多项式以向量容器方式存储，下标代表x的指数。
 typedef vector<complex> cpoly;
 
+std::ostream & operator<<(std::ostream &out, poly &obj);
+std::ostream & operator<<(std::ostream &out, cpoly &obj);
+
+
 complex value(cpoly f, complex x);
 
 cpoly operator +(cpoly a, cpoly b);           //多项式的运算符重载
@@ -74,6 +78,8 @@ public:
 	expfunction(double t) { expo = complex(t); };
 	complex val(complex t) { return exp(expo*t); }
 };
+
+std::ostream & operator<<(std::ostream &out, expfunction &obj);
 class fracfunction     //分式函数类
 {
 public:
@@ -87,6 +93,8 @@ public:
 		return value(numer, t) / value(deno, t);
 	}
 };
+std::ostream & operator<<(std::ostream &out, fracfunction &obj);
+
 
 class func    //指数函数和分式函数乘积的函数类，用于拉普拉斯和Z变换
 {
@@ -102,8 +110,11 @@ public:
 	complex val(complex t) { return ((complex)(ex.val(t)) * (fra.val(t))); }
 };
 
+std::ostream & operator<<(std::ostream &out, func &obj);
+
 typedef vector<func> vecfunc; //指数函数和分式函数乘积的多项式
 
+std::ostream & operator<<(std::ostream &out, vecfunc &obj);
 
 
 func operator *(func x, func y);

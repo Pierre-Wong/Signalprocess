@@ -2,6 +2,17 @@
 
 #include "../complex/mycomplex.h"
 
+
+
+#include <windows.h>   
+#include <stdio.h>   
+#include <mmsystem.h>   
+#include <vector>
+#include <algorithm>
+
+#include<numeric>
+
+
 double show(double x);
 
 complex frac(complex s);
