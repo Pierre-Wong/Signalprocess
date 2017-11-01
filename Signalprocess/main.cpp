@@ -58,8 +58,8 @@ int main()
 	//showc(showva, -10, 10, 0, 12);
 	//showd(df, -10, 10, -30, 30);
 	//showc(db, 0, 1, -1000, 0);
-	//showc(db, 0, 1, -150, 0);
-
+	showc(db, 0, 1, -150, 0);
+	/*
 	
 	poly aa, bb;
 	aa.push_back(1);
@@ -72,6 +72,7 @@ int main()
 	vevecom im = zeroinput(aa, bb);
 	
 	showc(re, -5, 5, -30, 30);
+	*/
 	/*showfunction a;
 	printf("%lf", a(1));
 	getchar();

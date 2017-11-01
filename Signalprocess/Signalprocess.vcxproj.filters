@@ -33,6 +33,9 @@
     <ClCompile Include="mainpart\part2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="example3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mainpart\part2.h">

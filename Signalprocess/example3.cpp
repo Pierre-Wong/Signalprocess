@@ -44,8 +44,8 @@ int main()
 	}
 	decom iff = fft(seq, 5);
 	designal dis = designal(iff,1,32,0);
-	//showd(dis.re,-31,31,-10,10);
-	showc(gibbs, -10, 10, -2, 2);
+	showd(dis.re,-31,31,-10,10);
+	//showc(gibbs, -10, 10, -2, 2);
 	
 	
 

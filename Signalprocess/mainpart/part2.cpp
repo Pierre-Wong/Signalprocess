@@ -871,7 +871,7 @@ ve3com reduce(fracfunction f)
 				}
 			}
 
-		out:   _asm {};
+		out:   int label = 0;
 		}
 	}
 	ve3com p(2, vevecom());
